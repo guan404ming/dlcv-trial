@@ -1,18 +1,18 @@
-from transformers import Qwen3VLForConditionalGeneration, AutoProcessor
+from transformers import Qwen3VLForConditionalGeneration, AutoProcessor, BitsAndBytesConfig
 
 def main():
-    # default: Load the model on the available device(s)
-    model = Qwen3VLForConditionalGeneration.from_pretrained(
-        "Qwen/Qwen3-VL-8B-Instruct", dtype="auto", device_map="auto"
+    # Configure 8-bit quantization to dramatically reduce memory usage
+    quantization_config = BitsAndBytesConfig(
+        load_in_8bit=True,
+        llm_int8_threshold=6.0,
     )
 
-    # We recommend enabling flash_attention_2 for better acceleration and memory saving, especially in multi-image and video scenarios.
-    # model = Qwen3VLForConditionalGeneration.from_pretrained(
-    #     "Qwen/Qwen3-VL-8B-Instruct",
-    #     dtype=torch.bfloat16,
-    #     attn_implementation="flash_attention_2",
-    #     device_map="auto",
-    # )
+    model = Qwen3VLForConditionalGeneration.from_pretrained(
+        "Qwen/Qwen3-VL-8B-Instruct",
+        quantization_config=quantization_config,
+        device_map="auto",
+        low_cpu_mem_usage=True,
+    )
 
     processor = AutoProcessor.from_pretrained("Qwen/Qwen3-VL-8B-Instruct")
 
