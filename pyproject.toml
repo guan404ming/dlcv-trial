@@ -7,9 +7,11 @@ requires-python = ">=3.11"
 dependencies = [
     "accelerate>=1.12.0",
     "bitsandbytes>=0.45.0",
+    "numpy>=2.3.5",
     "pillow>=12.0.0",
     "pycocotools>=2.0.10",
     "pydantic-ai-slim[huggingface]>=1.27.0",
+    "scikit-learn>=1.7.2",
     "setuptools>=80.9.0",
     "torch>=2.9.1",
     "torchvision>=0.24.1",
