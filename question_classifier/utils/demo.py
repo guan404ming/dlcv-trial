@@ -1,10 +1,15 @@
 import json
+import sys
 from pathlib import Path
-from inference import predict
+
+# Add project root to path
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+
+from question_classifier import predict_question_category
 
 def main():
     # Load test data
-    test_path = Path(__file__).parent.parent / 'data' / 'test.json'
+    test_path = Path(__file__).parent.parent.parent / 'data' / 'test.json'
     with open(test_path) as f:
         data = json.load(f)
 
@@ -24,7 +29,7 @@ def main():
             continue
 
         # Predict category
-        category = predict(question)
+        category = predict_question_category(question)
 
         # Store result
         results.append({

@@ -4,7 +4,7 @@ from pathlib import Path
 _MODEL = None
 
 
-def predict(question: str) -> str:
+def predict_question_category(question: str) -> str:
     """
     Predict category for a question.
 

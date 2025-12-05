@@ -9,11 +9,11 @@ import argparse
 
 def load_data(json_path):
     """Load question-category pairs from JSON."""
-    with open(json_path, 'r') as f:
+    with open(json_path, "r") as f:
         data = json.load(f)
 
-    questions = [item['question'] for item in data]
-    categories = [item['category'] for item in data]
+    questions = [item["question"] for item in data]
+    categories = [item["category"] for item in data]
     return questions, categories
 
 
@@ -29,18 +29,17 @@ def train_model(train_questions, train_categories):
     train_questions = [clean_question(q) for q in train_questions]
 
     # Create pipeline
-    model = Pipeline([
-        ('tfidf', TfidfVectorizer(
-            max_features=5000,
-            ngram_range=(1, 3),
-            min_df=1
-        )),
-        ('classifier', LogisticRegression(
-            max_iter=1000,
-            multi_class='multinomial',
-            random_state=42
-        ))
-    ])
+    model = Pipeline(
+        [
+            ("tfidf", TfidfVectorizer(max_features=5000, ngram_range=(1, 3), min_df=1)),
+            (
+                "classifier",
+                LogisticRegression(
+                    max_iter=1000, multi_class="multinomial", random_state=42
+                ),
+            ),
+        ]
+    )
 
     # Train
     print(f"Training on {len(train_questions)} samples...")
@@ -70,9 +69,11 @@ def evaluate_model(model, test_questions, test_categories):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--train_path', type=str, default='data/train_pairs.json')
-    parser.add_argument('--val_path', type=str, default='data/val_pairs.json')
-    parser.add_argument('--model_path', type=str, default='models/question_classifier.pkl')
+    parser.add_argument("--train_path", type=str, default="data/full_pairs.json")
+    parser.add_argument("--val_path", type=str, default="data/val_pairs.json")
+    parser.add_argument(
+        "--model_path", type=str, default="question_classifier/question_classifier.pkl"
+    )
     args = parser.parse_args()
 
     # Load training data
@@ -94,11 +95,12 @@ def main():
 
     # Save model
     import os
+
     os.makedirs(os.path.dirname(args.model_path), exist_ok=True)
-    with open(args.model_path, 'wb') as f:
+    with open(args.model_path, "wb") as f:
         pickle.dump(model, f)
     print(f"\nModel saved to {args.model_path}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
