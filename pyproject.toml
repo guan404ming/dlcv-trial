@@ -9,6 +9,7 @@ dependencies = [
     "bitsandbytes>=0.45.0",
     "pillow>=12.0.0",
     "pycocotools>=2.0.10",
+    "pydantic-ai-slim[huggingface]>=1.27.0",
     "setuptools>=80.9.0",
     "torch>=2.9.1",
     "torchvision>=0.24.1",
