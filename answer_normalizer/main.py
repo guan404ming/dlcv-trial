@@ -9,7 +9,7 @@ _normalizer = None
 
 
 def ml_based_normalize_answer(
-    freeform_answer, category, question=None, model_path="answer_normalizer/checkpoints"
+    freeform_answer, category, question=None, model_path="checkpoints"
 ):
     """
     Convenience function to normalize an answer using RoBERTa model.

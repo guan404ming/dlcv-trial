@@ -48,7 +48,7 @@ Train the model:
 python answer_normalizer/train.py \
     --train_path data/train_answer_pairs.json \
     --val_path data/val_answer_pairs.json \
-    --output_dir answer_normalizer/checkpoints \
+    --output_dir checkpoints \
     --batch_size 16 \
     --epochs 5 \
     --lr 2e-5
@@ -73,7 +73,7 @@ python answer_normalizer/train.py \
 python answer_normalizer/predict.py \
     --answer "The pallet [Region 0] is to the left of the pallet [Region 1]." \
     --category left_right \
-    --model_path answer_normalizer/checkpoints
+    --model_path checkpoints
 ```
 
 ### Python API
@@ -106,7 +106,7 @@ for answer, category in examples:
     result = ml_based_normalize_answer(
         freeform_answer=answer,
         category=category,
-        model_path='answer_normalizer/checkpoints'
+        model_path='checkpoints'
     )
     print(f"{category}: {answer} -> {result}")
 ```

@@ -385,7 +385,7 @@ def main():
     parser.add_argument(
         "--model_path",
         type=str,
-        default="answer_normalizer/checkpoints",
+        default="checkpoints",
         help="Path to ML model checkpoint (for ml method)",
     )
     parser.add_argument(

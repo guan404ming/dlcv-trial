@@ -126,7 +126,7 @@ def main():
     parser.add_argument(
         "--output_dir",
         type=str,
-        default="answer_normalizer/checkpoints",
+        default="checkpoints",
         help="Output directory for model checkpoints",
     )
     parser.add_argument("--batch_size", type=int, default=16, help="Batch size")
