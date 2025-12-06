@@ -1,5 +1,5 @@
 """
-Demo script for agentic answer normalizer.
+Demo script for language model based answer normalizer.
 
 Tests the agent on validation dataset with metrics and statistics.
 """
@@ -13,7 +13,7 @@ from collections import defaultdict
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from predict import agentic_normalize_answer
+from predict import lm_based_normalize_answer
 
 
 def normalize_value(value):
@@ -84,7 +84,7 @@ def run_evaluation(examples, verbose=False):
             print(f"Expected: {expected}")
 
         try:
-            result = agentic_normalize_answer(
+            result = lm_based_normalize_answer(
                 answer=answer,
                 category=category
             )
@@ -155,7 +155,7 @@ def print_metrics(results):
 
 def main():
     """Run demo on validation dataset."""
-    parser = argparse.ArgumentParser(description='Test agentic answer normalizer on validation data')
+    parser = argparse.ArgumentParser(description='Test language model based answer normalizer on validation data')
     parser.add_argument('--val_path', type=str,
                        default='data/val_answer_pairs.json',
                        help='Path to validation JSON file')
@@ -169,7 +169,6 @@ def main():
 
     args = parser.parse_args()
 
-    print("Agentic Answer Normalizer - Validation Test")
     print("="*80)
 
     # Load validation data

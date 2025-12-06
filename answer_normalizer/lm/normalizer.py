@@ -1,5 +1,5 @@
 """
-Agentic Answer Normalizer using local lang model with Transformers.
+Answer Normalizer using local lang model with Transformers.
 
 Uses structured I/O and tool calling for robust answer normalization.
 """
@@ -168,11 +168,11 @@ Normalize the user answer. Provide a JSON with "normalized_answer" and "reasonin
 _normalizer_instance = None
 
 
-def agentic_normalize_answer_sync(
+def lm_based_normalize_answer_sync(
     answer: str, category: str
 ) -> NormalizedAnswer:
     """
-    Synchronous version of agentic_normalize_answer using local model.
+    Synchronous version of lm_based_normalize_answer using local model.
     """
     global _normalizer_instance
     if _normalizer_instance is None:

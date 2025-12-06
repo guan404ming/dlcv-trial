@@ -1,5 +1,5 @@
 """
-Prompt templates for agentic answer normalizer.
+Prompt templates for answer normalizer.
 
 Contains category-specific prompts and few-shot examples for answer normalization.
 """

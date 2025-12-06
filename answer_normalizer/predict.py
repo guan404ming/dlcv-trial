@@ -303,9 +303,9 @@ def normalize_answer(
     return _normalizer.normalize(freeform_answer, category, question)
 
 
-def agentic_normalize_answer(answer: str, category: str) -> dict:
+def lm_based_normalize_answer(answer: str, category: str) -> dict:
     """
-    Normalize an answer using the agentic approach.
+    Normalize an answer using the language model based approach.
 
     Uses local transformer model with structured I/O.
 
@@ -318,9 +318,9 @@ def agentic_normalize_answer(answer: str, category: str) -> dict:
             - normalized_value: The normalized answer
             - reasoning: Brief reasoning for the normalization
     """
-    from agent.normalizer import agentic_normalize_answer_sync
+    from lm.normalizer import lm_based_normalize_answer_sync
 
-    result = agentic_normalize_answer_sync(answer, category)
+    result = lm_based_normalize_answer_sync(answer, category)
     return {
         "normalized_value": result.normalized_value,
         "reasoning": result.reasoning,
