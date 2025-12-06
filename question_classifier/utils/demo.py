@@ -7,9 +7,10 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 from question_classifier import predict_question_category
 
+
 def main():
     # Load test data
-    test_path = Path(__file__).parent.parent.parent / 'data' / 'test.json'
+    test_path = Path(__file__).parent.parent.parent / "data" / "test.json"
     with open(test_path) as f:
         data = json.load(f)
 
@@ -20,9 +21,9 @@ def main():
     for item in data:
         # Extract question from conversations
         question = None
-        for conv in item.get('conversations', []):
-            if conv.get('from') == 'human':
-                question = conv.get('value')
+        for conv in item.get("conversations", []):
+            if conv.get("from") == "human":
+                question = conv.get("value")
                 break
 
         if not question:
@@ -32,26 +33,30 @@ def main():
         category = predict_question_category(question)
 
         # Store result
-        results.append({
-            'id': item['id'],
-            'image': item['image'],
-            'question': question,
-            'predicted_category': category
-        })
+        results.append(
+            {
+                "id": item["id"],
+                "image": item["image"],
+                "question": question,
+                "predicted_category": category,
+            }
+        )
 
     # Save results
-    output_path = Path(__file__).parent / 'result.json'
-    with open(output_path, 'w') as f:
+    output_path = Path(__file__).parent / "result.json"
+    with open(output_path, "w") as f:
         json.dump(results, f, indent=2)
 
     print(f"Saved {len(results)} predictions to {output_path}")
 
     # Show category distribution
     from collections import Counter
-    counts = Counter(r['predicted_category'] for r in results)
+
+    counts = Counter(r["predicted_category"] for r in results)
     print("\nCategory distribution:")
     for cat, count in sorted(counts.items()):
         print(f"  {cat:12s}: {count}")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

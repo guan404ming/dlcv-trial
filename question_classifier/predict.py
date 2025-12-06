@@ -17,8 +17,8 @@ def predict_question_category(question: str) -> str:
     global _MODEL
 
     if _MODEL is None:
-        model_path = Path(__file__).parent / 'question_classifier.pkl'
-        with open(model_path, 'rb') as f:
+        model_path = Path(__file__).parent / "question_classifier.pkl"
+        with open(model_path, "rb") as f:
             _MODEL = pickle.load(f)
 
     return _MODEL.predict([question.strip()])[0]

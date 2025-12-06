@@ -118,8 +118,8 @@ Respond with valid JSON only."""
         if category in RESPONSE_MODEL_MAP:
             try:
                 # Extract JSON from output
-                json_start = model_output.find('{')
-                json_end = model_output.rfind('}') + 1
+                json_start = model_output.find("{")
+                json_end = model_output.rfind("}") + 1
                 if json_start != -1 and json_end > json_start:
                     json_str = model_output[json_start:json_end]
                     parsed_data = json.loads(json_str)
@@ -134,13 +134,15 @@ Respond with valid JSON only."""
             except (json.JSONDecodeError, ValidationError) as e:
                 print(f"  Warning: Failed to parse structured output: {e}")
 
-        results.append({
-            "id": sample["id"],
-            "category": category,
-            "reasoning": reasoning,
-            "normalized_answer": normalized_answer,
-            "freeform_answer": freeform_answer,
-        })
+        results.append(
+            {
+                "id": sample["id"],
+                "category": category,
+                "reasoning": reasoning,
+                "normalized_answer": normalized_answer,
+                "freeform_answer": freeform_answer,
+            }
+        )
 
         print(f"  Model Output: {model_output}")
         print(f"  Reasoning: {reasoning}")

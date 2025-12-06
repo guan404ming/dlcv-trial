@@ -15,5 +15,11 @@ dependencies = [
     "setuptools>=80.9.0",
     "torch>=2.9.1",
     "torchvision>=0.24.1",
+    "tqdm>=4.67.1",
     "transformers>=4.57.3",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.8",
 ]

@@ -1,6 +1,7 @@
 # Project specific
 DLCV_Final1/
 data/
+checkpoints/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
