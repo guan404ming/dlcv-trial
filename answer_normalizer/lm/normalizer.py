@@ -4,10 +4,8 @@ Answer Normalizer using local lang model with Transformers.
 Uses structured I/O and tool calling for robust answer normalization.
 """
 
-import sys
 import json
 import re
-from pathlib import Path
 from pydantic import BaseModel, Field
 from transformers import (
     Qwen3VLForConditionalGeneration,
@@ -15,12 +13,7 @@ from transformers import (
     BitsAndBytesConfig,
 )
 
-# Add project root to path to import models
-project_root = Path(__file__).resolve().parents[2]
-if str(project_root) not in sys.path:
-    sys.path.insert(0, str(project_root))
-
-from models import RESPONSE_MODEL_MAP
+from .models import RESPONSE_MODEL_MAP
 
 
 class NormalizedAnswer(BaseModel):
