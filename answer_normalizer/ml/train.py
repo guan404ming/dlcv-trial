@@ -148,7 +148,7 @@ def main():
     tokenizer = create_tokenizer(args.model_name)
 
     # Create dataloaders
-    print(f"\nLoading data...")
+    print("\nLoading data...")
     print(f"  Train: {args.train_path}")
     print(f"  Val: {args.val_path}")
     train_loader, val_loader = create_dataloaders(
@@ -233,7 +233,7 @@ def main():
         json.dump(history, f, indent=2)
 
     print(f"\n{'=' * 60}")
-    print(f"Training complete!")
+    print("Training complete!")
     print(f"Best validation accuracy: {best_val_acc:.4f}")
     print(f"Model saved to: {args.output_dir}")
     print(f"{'=' * 60}\n")
