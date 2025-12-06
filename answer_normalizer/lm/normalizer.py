@@ -138,7 +138,9 @@ Normalize the user answer. Provide a JSON with "normalized_answer" and "reasonin
             parsed_data = json.loads(json_str)
 
             # Handle case where model outputs schema-like structure with values in 'properties'
-            if "properties" in parsed_data and isinstance(parsed_data["properties"], dict):
+            if "properties" in parsed_data and isinstance(
+                parsed_data["properties"], dict
+            ):
                 props = parsed_data["properties"]
                 if "reasoning" in props or "normalized_answer" in props:
                     parsed_data = props
@@ -168,9 +170,7 @@ Normalize the user answer. Provide a JSON with "normalized_answer" and "reasonin
 _normalizer_instance = None
 
 
-def lm_based_normalize_answer_sync(
-    answer: str, category: str
-) -> NormalizedAnswer:
+def lm_based_normalize_answer_sync(answer: str, category: str) -> NormalizedAnswer:
     """
     Synchronous version of lm_based_normalize_answer using local model.
     """

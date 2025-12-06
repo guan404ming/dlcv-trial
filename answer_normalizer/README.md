@@ -79,25 +79,22 @@ python answer_normalizer/predict.py \
 ### Python API
 
 ```python
-from answer_normalizer import normalize_answer
+from answer_normalizer import ml_based_normalize_answer
 
 # Normalize an answer
-result = normalize_answer(
+result = ml_based_normalize_answer(
     freeform_answer="The distance is 8.66 meters.",
     category="distance"
 )
 print(result)  # Output: 8.66
 ```
 
-### Using the AnswerNormalizer class
+### Using the function-based API
 
 ```python
-from answer_normalizer import AnswerNormalizer
+from answer_normalizer import ml_based_normalize_answer
 
-# Initialize normalizer
-normalizer = AnswerNormalizer('answer_normalizer/checkpoints')
-
-# Normalize answers
+# Normalize answers using ML-based approach
 examples = [
     ("The pallet [Region 0] is to the left.", "left_right"),
     ("There are 4 pallets in the buffer.", "count"),
@@ -106,7 +103,11 @@ examples = [
 ]
 
 for answer, category in examples:
-    result = normalizer.normalize(answer, category)
+    result = ml_based_normalize_answer(
+        freeform_answer=answer,
+        category=category,
+        model_path='answer_normalizer/checkpoints'
+    )
     print(f"{category}: {answer} -> {result}")
 ```
 

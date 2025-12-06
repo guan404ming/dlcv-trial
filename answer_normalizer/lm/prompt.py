@@ -150,7 +150,6 @@ For COUNT questions:
 - Look for phrases like "there are X pallets", "holds a total of X", "X pallets are"
 - Return just the number or number word
 """,
-
     "distance": """
 For DISTANCE questions:
 - Extract the distance value in meters
@@ -158,7 +157,6 @@ For DISTANCE questions:
 - Look for patterns like "X meters", "distance of X", "X meters away"
 - Keep the decimal precision from the original answer
 """,
-
     "left_right": """
 For LEFT_RIGHT questions:
 - Extract the spatial relationship word
@@ -166,7 +164,6 @@ For LEFT_RIGHT questions:
 - Look for phrases like "to the left of", "on the right", "situated left"
 - Return just the single relationship word
 """,
-
     "mcq": """
 For MCQ questions:
 - Extract the region number that is the answer
