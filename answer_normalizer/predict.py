@@ -284,7 +284,7 @@ def normalize_answer(
     freeform_answer, category, question=None, model_path="answer_normalizer/checkpoints"
 ):
     """
-    Convenience function to normalize an answer.
+    Convenience function to normalize an answer using RoBERTa model.
 
     Args:
         freeform_answer: The freeform answer text
@@ -301,6 +301,30 @@ def normalize_answer(
         _normalizer = AnswerNormalizer(model_path)
 
     return _normalizer.normalize(freeform_answer, category, question)
+
+
+def agentic_normalize_answer(answer: str, category: str) -> dict:
+    """
+    Normalize an answer using the agentic approach.
+
+    Uses local transformer model with structured I/O.
+
+    Args:
+        answer: The freeform answer text
+        category: The question category (count, distance, left_right, mcq)
+
+    Returns:
+        Dictionary with:
+            - normalized_value: The normalized answer
+            - reasoning: Brief reasoning for the normalization
+    """
+    from agent.normalizer import agentic_normalize_answer_sync
+
+    result = agentic_normalize_answer_sync(answer, category)
+    return {
+        "normalized_value": result.normalized_value,
+        "reasoning": result.reasoning,
+    }
 
 
 if __name__ == "__main__":
