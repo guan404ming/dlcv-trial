@@ -10,8 +10,8 @@ from tqdm import tqdm
 import json
 from pathlib import Path
 
-from model import AnswerNormalizerModel, create_tokenizer
-from utils.dataset import create_dataloaders
+from .model import AnswerNormalizerModel, create_tokenizer
+from .utils.dataset import create_dataloaders
 
 
 def train_epoch(model, dataloader, optimizer, scheduler, device):

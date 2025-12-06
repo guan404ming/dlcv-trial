@@ -5,7 +5,7 @@ Inference script for answer normalization.
 import torch
 from pathlib import Path
 from transformers import RobertaTokenizerFast
-from model import AnswerNormalizerModel
+from .ml.model import AnswerNormalizerModel
 import re
 
 
@@ -87,7 +87,7 @@ class AnswerNormalizer:
 
         # Find B and I tokens
         answer_tokens = []
-        for i, (pred, (start, end)) in enumerate(zip(predictions, offset_mapping)):
+        for pred, (start, end) in zip(predictions, offset_mapping):
             # Skip special tokens
             if start == 0 and end == 0:
                 continue
@@ -280,7 +280,7 @@ class AnswerNormalizer:
 _normalizer = None
 
 
-def normalize_answer(
+def ml_based_normalize_answer(
     freeform_answer, category, question=None, model_path="answer_normalizer/checkpoints"
 ):
     """
@@ -318,7 +318,7 @@ def lm_based_normalize_answer(answer: str, category: str) -> dict:
             - normalized_value: The normalized answer
             - reasoning: Brief reasoning for the normalization
     """
-    from lm.normalizer import lm_based_normalize_answer_sync
+    from .lm.normalizer import lm_based_normalize_answer_sync
 
     result = lm_based_normalize_answer_sync(answer, category)
     return {
